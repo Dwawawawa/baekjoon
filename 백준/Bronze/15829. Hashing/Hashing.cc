@@ -1,8 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <cmath>
-
 using namespace std;
 
 int main(void)
@@ -11,14 +8,19 @@ int main(void)
 	string str;
 	cin >> L;
 	cin >> str;
+	
+	unsigned long long sum = 0;
+	unsigned long long power = 1;
 
-	unsigned long sum = 0;
+
 	for (int i = 0; i < L; i++)
 	{
-		sum += (str[i] - 'a' + 1) * pow(31, i);
+		sum = (sum + (((unsigned long long)str[i] - 96) * power % 1234567891) % 1234567891) % 1234567891;
+		power = (((power % 1234567891) * 31) % 1234567891) % 1234567891;
 	}
-	cout << sum % 1234567891;
 
+	
+	cout << sum;
 
 	return 0;
 }
